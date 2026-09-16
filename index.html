@@ -94,6 +94,11 @@
     html { scroll-behavior: smooth; }
     #mobile-menu { transition: transform 0.3s ease; }
     #mobile-menu.open { transform: translateX(0); }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      #mobile-menu { transition: none; }
+      .group:hover img, img:hover { transform: none !important; }
+    }
   </style>
 </head>
 <body class="font-body text-base text-on-surface antialiased overflow-x-hidden">
@@ -114,7 +119,7 @@
       <a href="#shop" class="text-primary hover:opacity-80 transition-opacity">
         <i data-lucide="shopping-bag" class="w-6 h-6"></i>
       </a>
-      <button id="menu-btn" class="md:hidden text-primary p-1" aria-label="Abrir menu">
+      <button id="menu-btn" class="md:hidden text-primary p-1" aria-label="Abrir menu" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-menu">
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
     </div>
@@ -122,11 +127,11 @@
 </nav>
 
 <!-- Mobile menu overlay -->
-<div id="menu-overlay" class="hidden fixed inset-0 bg-black/30 z-40"></div>
+<div id="menu-overlay" class="hidden fixed inset-0 bg-black/30 z-40" aria-hidden="true"></div>
 
 <!-- Mobile drawer -->
-<div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-surface z-50 shadow-xl p-8 flex flex-col gap-6 transform translate-x-full">
-  <button onclick="closeMenu()" class="self-end text-on-surface-variant">
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-surface z-50 shadow-xl p-8 flex flex-col gap-6 transform translate-x-full" role="dialog" aria-modal="true" aria-label="Menu de navegação" aria-hidden="true">
+  <button id="menu-close-btn" onclick="closeMenu()" class="self-end text-on-surface-variant" aria-label="Fechar menu">
     <i data-lucide="x" class="w-6 h-6"></i>
   </button>
   <a href="#" class="hover:opacity-80 transition-opacity">
@@ -437,11 +442,13 @@
       Receba novidades, lançamentos e promoções em primeira mão. Sem spam — só o que realmente importa.
     </p>
     <form id="email-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <label for="newsletter-email" class="sr-only">Seu e-mail</label>
       <input
+        id="newsletter-email"
         type="email"
         required
         placeholder="seu@email.com"
-        class="flex-1 bg-surface border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary transition-colors"
+        class="flex-1 bg-surface border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
       />
       <button type="submit" class="bg-primary text-on-primary px-6 py-3 rounded-lg font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors whitespace-nowrap">
         Quero receber
@@ -520,13 +527,27 @@
   const menuBtn = document.getElementById('menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const menuOverlay = document.getElementById('menu-overlay');
+  const menuCloseBtn = document.getElementById('menu-close-btn');
   function openMenu() {
     mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
     menuOverlay.classList.remove('hidden');
+    menuOverlay.setAttribute('aria-hidden', 'false');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    menuCloseBtn.focus();
+    document.addEventListener('keydown', onMenuKeydown);
   }
   function closeMenu() {
     mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
     menuOverlay.classList.add('hidden');
+    menuOverlay.setAttribute('aria-hidden', 'true');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('keydown', onMenuKeydown);
+    menuBtn.focus();
+  }
+  function onMenuKeydown(e) {
+    if (e.key === 'Escape') closeMenu();
   }
   if (menuBtn) menuBtn.addEventListener('click', openMenu);
   if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
