@@ -1,0 +1,1018 @@
+# Cálida Luz — Rebuild da Landing Page — Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Reconstruir a landing page da Cálida Luz como um site de conversão real, com 10 seções, responsivo, direcionando visitantes para Shopee e Mercado Livre.
+
+**Architecture:** Um único arquivo `index.html` na raiz do projeto, usando Tailwind CDN (igual ao Stitch) e vanilla JS. Todo o conteúdo é mockado (imagens via placehold.co, preços fictícios) para ser substituído pelos reais depois. O arquivo do Stitch em `stitch_c_lida_luz_e_commerce_design/code.html` serve como referência de configuração Tailwind — não modifique ele.
+
+**Tech Stack:** HTML5, Tailwind CSS CDN (com config custom), Google Fonts (Libre Caslon Text + DM Sans + Material Symbols), Vanilla JS.
+
+---
+
+## File Structure
+
+```
+/home/jose-garcia/Projetos/Playground/calidaluz/
+├── index.html                  ← arquivo principal (CRIAR)
+└── stitch_c_lida_luz_e_commerce_design/
+    └── code.html               ← referência de config Tailwind (NÃO MODIFICAR)
+```
+
+---
+
+## Task 1: Scaffold base do HTML
+
+**Files:**
+- Create: `index.html`
+
+- [ ] **Step 1: Criar o arquivo base com head, config Tailwind e estilos globais**
+
+Crie `index.html` na raiz do projeto com este conteúdo completo:
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Cálida Luz — Velas artesanais de soja feitas à mão. Compre na Shopee e Mercado Livre."/>
+  <title>Cálida Luz — Velas Artesanais</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@100..700,0..1,-50..200,20..48&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#875300",
+            "on-primary": "#ffffff",
+            "primary-container": "#d48c2c",
+            "on-primary-container": "#4b2c00",
+            "primary-fixed": "#ffddba",
+            "primary-fixed-dim": "#ffb965",
+            "on-primary-fixed": "#2b1700",
+            "on-primary-fixed-variant": "#663d00",
+            "inverse-primary": "#ffb965",
+            "secondary": "#586244",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#dce7c1",
+            "on-secondary-container": "#5e684a",
+            "secondary-fixed": "#dce7c1",
+            "secondary-fixed-dim": "#c0cba7",
+            "on-secondary-fixed": "#161e07",
+            "on-secondary-fixed-variant": "#414a2e",
+            "tertiary": "#006689",
+            "on-tertiary": "#ffffff",
+            "tertiary-container": "#38a6d7",
+            "on-tertiary-container": "#00384d",
+            "tertiary-fixed": "#c3e8ff",
+            "tertiary-fixed-dim": "#79d1ff",
+            "on-tertiary-fixed": "#001e2c",
+            "on-tertiary-fixed-variant": "#004c68",
+            "background": "#fff8f4",
+            "on-background": "#211a14",
+            "surface": "#fff8f4",
+            "surface-dim": "#e5d8cc",
+            "surface-bright": "#fff8f4",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#fff1e6",
+            "surface-container": "#faebe0",
+            "surface-container-high": "#f4e6da",
+            "surface-container-highest": "#eee0d5",
+            "on-surface": "#211a14",
+            "on-surface-variant": "#524436",
+            "surface-variant": "#eee0d5",
+            "surface-tint": "#875300",
+            "inverse-surface": "#372f28",
+            "inverse-on-surface": "#fceee3",
+            "outline": "#857464",
+            "outline-variant": "#d7c3b0",
+            "error": "#ba1a1a",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "organic-offset": "1.5rem",
+            "unit": "8px",
+            "section-gap": "5rem"
+          },
+          fontFamily: {
+            "display": ["Libre Caslon Text", "serif"],
+            "body": ["DM Sans", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #fff8f4; }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .blob-shape { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+    .leaf-shape { border-radius: 0 50% 0 50%; }
+    /* Mobile drawer */
+    #mobile-menu { transition: transform 0.3s ease; }
+    #mobile-menu.open { transform: translateX(0); }
+  </style>
+</head>
+<body class="font-body text-base text-on-surface antialiased overflow-x-hidden">
+
+  <!-- SEÇÕES VÃO AQUI -->
+
+  <!-- Scripts -->
+  <script>
+    // Nav hide/show on scroll
+    let lastScrollTop = 0;
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop && scrollTop > 100) {
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        navbar.style.transform = 'translateY(0)';
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }, false);
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      menuOverlay.classList.remove('hidden');
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      menuOverlay.classList.add('hidden');
+    }
+    if (menuBtn) menuBtn.addEventListener('click', openMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Email capture
+    const emailForm = document.getElementById('email-form');
+    const emailSuccess = document.getElementById('email-success');
+    if (emailForm) {
+      emailForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        emailForm.classList.add('hidden');
+        emailSuccess.classList.remove('hidden');
+      });
+    }
+  </script>
+</body>
+</html>
+```
+
+- [ ] **Step 2: Abrir no browser e confirmar que carrega sem erros**
+
+```bash
+xdg-open /home/jose-garcia/Projetos/Playground/calidaluz/index.html
+# ou abra o arquivo diretamente no browser
+```
+
+Esperado: página em branco com fundo creme (#fff8f4). Sem erros no console.
+
+- [ ] **Step 3: Commit**
+
+```bash
+cd /home/jose-garcia/Projetos/Playground/calidaluz
+git init
+git add index.html
+git commit -m "feat: scaffold base do HTML com config Tailwind e estilos globais"
+```
+
+---
+
+## Task 2: Nav (desktop + mobile hamburguer)
+
+**Files:**
+- Modify: `index.html` — substituir o comentário `<!-- SEÇÕES VÃO AQUI -->` pela nav + o comentário restante
+
+- [ ] **Step 1: Inserir o HTML da nav antes do comentário `<!-- SEÇÕES VÃO AQUI -->`**
+
+Substitua `<!-- SEÇÕES VÃO AQUI -->` por:
+
+```html
+<!-- Nav -->
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-surface/80 border-b border-outline-variant/20 transition-transform duration-300" id="navbar">
+  <div class="flex justify-between items-center w-full px-organic-offset py-4 max-w-7xl mx-auto">
+    <a href="#" class="font-display text-2xl italic text-primary hover:opacity-80 transition-opacity">Cálida Luz</a>
+    <!-- Desktop links -->
+    <div class="hidden md:flex gap-8 items-center">
+      <a href="#shop" class="text-on-surface-variant hover:text-primary transition-colors text-sm">Shop</a>
+      <a href="#essencia" class="text-on-surface-variant hover:text-primary transition-colors text-sm">Essência</a>
+      <a href="#como-e-feita" class="text-on-surface-variant hover:text-primary transition-colors text-sm">Como é Feita</a>
+      <a href="#stories" class="text-on-surface-variant hover:text-primary transition-colors text-sm">Stories</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="#shop" class="text-primary hover:opacity-80 transition-opacity">
+        <span class="material-symbols-outlined">shopping_bag</span>
+      </a>
+      <!-- Hamburger button -->
+      <button id="menu-btn" class="md:hidden text-primary p-1" aria-label="Abrir menu">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu overlay -->
+<div id="menu-overlay" class="hidden fixed inset-0 bg-black/30 z-40"></div>
+
+<!-- Mobile drawer -->
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-surface z-50 shadow-xl p-8 flex flex-col gap-6 transform translate-x-full">
+  <button onclick="closeMenu()" class="self-end text-on-surface-variant">
+    <span class="material-symbols-outlined">close</span>
+  </button>
+  <a href="#shop" class="mobile-link font-display text-xl italic text-primary">Shop</a>
+  <a href="#essencia" class="mobile-link text-on-surface-variant hover:text-primary transition-colors">Essência</a>
+  <a href="#como-e-feita" class="mobile-link text-on-surface-variant hover:text-primary transition-colors">Como é Feita</a>
+  <a href="#stories" class="mobile-link text-on-surface-variant hover:text-primary transition-colors">Stories</a>
+  <hr class="border-outline-variant/30"/>
+  <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Instagram</a>
+  <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">TikTok</a>
+</div>
+
+<!-- SEÇÕES VÃO AQUI -->
+```
+
+- [ ] **Step 2: Verificar no browser**
+
+Recarregue o browser. Esperado:
+- Nav fixa no topo, fundo translúcido, logo "Cálida Luz" em itálico âmbar
+- Desktop: links visíveis. Mobile (redimensione a janela): links somem, ícone hamburguer aparece
+- Clicar no hamburguer abre o drawer lateral
+- Clicar fora do drawer fecha
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add index.html
+git commit -m "feat: nav fixa com menu hamburguer mobile"
+```
+
+---
+
+## Task 3: Hero Section
+
+**Files:**
+- Modify: `index.html` — adicionar hero antes de `<!-- SEÇÕES VÃO AQUI -->`
+
+- [ ] **Step 1: Inserir HTML do hero**
+
+Substitua `<!-- SEÇÕES VÃO AQUI -->` por:
+
+```html
+<!-- Hero -->
+<section class="min-h-screen pt-28 pb-section-gap px-organic-offset max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 relative">
+  <!-- Blob decorativo -->
+  <div class="absolute top-20 left-0 w-72 h-72 bg-surface-variant/40 blob-shape -z-10 mix-blend-multiply filter blur-3xl opacity-70 pointer-events-none"></div>
+
+  <!-- Texto -->
+  <div class="w-full md:w-1/2 z-10 text-center md:text-left">
+    <p class="text-secondary font-body text-xs uppercase tracking-widest mb-4">✦ Feito à mão · Pequenos lotes</p>
+    <h1 class="font-display text-4xl md:text-5xl leading-tight text-on-background mb-6">
+      Luz que abraça,<br/>
+      <em class="text-primary">calor que transforma.</em>
+    </h1>
+    <p class="text-on-surface-variant text-lg mb-10 max-w-md mx-auto md:mx-0 leading-relaxed">
+      Velas artesanais de soja. Para os seus momentos de respiro.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+      <a href="#shop" class="inline-block bg-primary text-on-primary px-8 py-3 rounded-lg font-body font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors duration-300 text-center">
+        Ver coleção →
+      </a>
+      <a href="#essencia" class="inline-block text-primary px-8 py-3 font-body font-medium hover:opacity-70 transition-opacity text-center">
+        Nossa história
+      </a>
+    </div>
+  </div>
+
+  <!-- Imagem -->
+  <div class="w-full md:w-1/2 relative">
+    <div class="absolute -right-6 -bottom-6 w-full h-full bg-secondary-container/30 leaf-shape -z-10 pointer-events-none"></div>
+    <img
+      src="https://placehold.co/600x700/e5d8cc/875300?text=Cálida+Luz"
+      alt="Vela artesanal Cálida Luz acesa em ambiente aconchegante"
+      class="w-full h-auto object-cover rounded-tl-[4rem] rounded-br-[4rem]"
+    />
+    <!-- Flourish SVG -->
+    <svg class="absolute -left-10 top-1/3 w-20 h-20 text-primary opacity-40 hidden md:block pointer-events-none" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <path d="M10 50 Q 30 20 50 50 T 90 50" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M45 45 L 50 50 L 55 45" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- SEÇÕES VÃO AQUI -->
+```
+
+- [ ] **Step 2: Verificar no browser**
+
+Recarregue. Esperado:
+- Layout 2 colunas no desktop (texto à esq, imagem à dir)
+- Mobile: coluna única, texto em cima, imagem embaixo
+- Blob decorativo visível no fundo
+- Botão "Ver coleção →" em âmbar, "Nossa história" em link texto
+- Imagem placeholder em tom creme/âmbar
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add index.html
+git commit -m "feat: hero section com headline, CTAs e imagem mockada"
+```
+
+---
+
+## Task 4: Barra de Selos de Confiança
+
+**Files:**
+- Modify: `index.html`
+
+- [ ] **Step 1: Inserir barra de selos após o hero**
+
+Substitua `<!-- SEÇÕES VÃO AQUI -->` por:
+
+```html
+<!-- Selos de Confiança -->
+<section class="py-10 bg-surface-container-low border-y border-outline-variant/20">
+  <div class="max-w-7xl mx-auto px-organic-offset">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 divide-y-0 md:divide-x md:divide-outline-variant/30">
+      <div class="flex flex-col items-center gap-2 text-center px-4">
+        <span class="material-symbols-outlined text-secondary" style="font-size: 28px;">eco</span>
+        <span class="font-body text-xs uppercase tracking-widest text-on-surface-variant font-medium">Cera 100% Natural</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 text-center px-4">
+        <span class="material-symbols-outlined text-secondary" style="font-size: 28px;">pets</span>
+        <span class="font-body text-xs uppercase tracking-widest text-on-surface-variant font-medium">Cruelty Free</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 text-center px-4">
+        <span class="material-symbols-outlined text-secondary" style="font-size: 28px;">pan_tool</span>
+        <span class="font-body text-xs uppercase tracking-widest text-on-surface-variant font-medium">Artesanal</span>
+      </div>
+      <div class="flex flex-col items-center gap-2 text-center px-4">
+        <span class="material-symbols-outlined text-secondary" style="font-size: 28px;">local_fire_department</span>
+        <span class="font-body text-xs uppercase tracking-widest text-on-surface-variant font-medium">Queima Limpa</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÕES VÃO AQUI -->
+```
+
+- [ ] **Step 2: Verificar no browser**
+
+Esperado: 4 selos em linha no desktop, grid 2×2 no mobile.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add index.html
+git commit -m "feat: barra de selos de confiança"
+```
+
+---
+
+## Task 5: Seção de Produtos
+
+**Files:**
+- Modify: `index.html`
+
+- [ ] **Step 1: Inserir seção de produtos**
+
+Substitua `<!-- SEÇÕES VÃO AQUI -->` por:
+
+```html
+<!-- Produtos -->
+<section id="shop" class="py-section-gap px-organic-offset max-w-7xl mx-auto">
+  <div class="text-center mb-16">
+    <h2 class="font-display text-3xl md:text-4xl text-on-background mb-4">Aconchego em Chamas</h2>
+    <p class="text-on-surface-variant max-w-lg mx-auto">Escolha a fragrância que guiará o seu próximo momento de respiro.</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
+
+    <!-- Produto 1 -->
+    <div class="group flex flex-col">
+      <div class="relative overflow-hidden rounded-tl-[3rem] rounded-br-[3rem] mb-6">
+        <img
+          src="https://placehold.co/600x500/f4e6da/875300?text=Brisa+de+Lavanda"
+          alt="Vela Brisa de Lavanda — Cálida Luz"
+          class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <span class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container text-xs font-medium px-3 py-1 rounded-full uppercase tracking-wide">Soja · Vegano</span>
+      </div>
+      <h3 class="font-display text-2xl text-on-background mb-2">Brisa de Lavanda</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">Campos floridos e a promessa de um sono tranquilo. Notas de lavanda francesa e um toque de baunilha.</p>
+      <p class="text-primary text-2xl font-bold mb-5">R$ 49,90</p>
+      <div class="flex gap-3">
+        <a href="#" class="flex-1 text-center bg-primary text-on-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors">Shopee</a>
+        <a href="#" class="flex-1 text-center border border-primary text-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary/10 transition-colors">Mercado Livre</a>
+      </div>
+    </div>
+
+    <!-- Produto 2 -->
+    <div class="group flex flex-col sm:mt-16">
+      <div class="relative overflow-hidden rounded-tr-[5rem] rounded-bl-[2rem] mb-6">
+        <img
+          src="https://placehold.co/600x500/eee0d5/524436?text=Madeiras+Calmas"
+          alt="Vela Madeiras Calmas — Cálida Luz"
+          class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <span class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container text-xs font-medium px-3 py-1 rounded-full uppercase tracking-wide">Soja · Vegano</span>
+      </div>
+      <h3 class="font-display text-2xl text-on-background mb-2">Madeiras Calmas</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">O calor de uma cabana rústica. Cedro, sândalo e um leve esfumaçado para aterrar a mente inquieta.</p>
+      <p class="text-primary text-2xl font-bold mb-5">R$ 54,90</p>
+      <div class="flex gap-3">
+        <a href="#" class="flex-1 text-center bg-primary text-on-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors">Shopee</a>
+        <a href="#" class="flex-1 text-center border border-primary text-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary/10 transition-colors">Mercado Livre</a>
+      </div>
+    </div>
+
+    <!-- Produto 3 -->
+    <div class="group flex flex-col">
+      <div class="relative overflow-hidden rounded-tl-[2rem] rounded-br-[4rem] mb-6">
+        <img
+          src="https://placehold.co/600x500/fff1e6/d48c2c?text=Baunilha+e+Mel"
+          alt="Vela Baunilha e Mel — Cálida Luz"
+          class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <span class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container text-xs font-medium px-3 py-1 rounded-full uppercase tracking-wide">Soja · Vegano</span>
+      </div>
+      <h3 class="font-display text-2xl text-on-background mb-2">Baunilha & Mel</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">Doçura reconfortante de tardes lentas. Baunilha de Madagascar, mel silvestre e um toque de âmbar.</p>
+      <p class="text-primary text-2xl font-bold mb-5">R$ 44,90</p>
+      <div class="flex gap-3">
+        <a href="#" class="flex-1 text-center bg-primary text-on-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors">Shopee</a>
+        <a href="#" class="flex-1 text-center border border-primary text-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary/10 transition-colors">Mercado Livre</a>
+      </div>
+    </div>
+
+    <!-- Produto 4 -->
+    <div class="group flex flex-col sm:mt-16">
+      <div class="relative overflow-hidden rounded-tr-[3rem] rounded-bl-[5rem] mb-6">
+        <img
+          src="https://placehold.co/600x500/dce7c1/586244?text=Hortelã+Fresca"
+          alt="Vela Hortelã Fresca — Cálida Luz"
+          class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <span class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container text-xs font-medium px-3 py-1 rounded-full uppercase tracking-wide">Soja · Vegano</span>
+      </div>
+      <h3 class="font-display text-2xl text-on-background mb-2">Hortelã Fresca</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed mb-4 flex-1">O frescor de uma manhã no jardim. Hortelã, eucalipto e um fundo vegetal para renovar o ambiente.</p>
+      <p class="text-primary text-2xl font-bold mb-5">R$ 47,90</p>
+      <div class="flex gap-3">
+        <a href="#" class="flex-1 text-center bg-primary text-on-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors">Shopee</a>
+        <a href="#" class="flex-1 text-center border border-primary text-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary/10 transition-colors">Mercado Livre</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SEÇÕES VÃO AQUI -->
+```
+
+- [ ] **Step 2: Verificar no browser**
+
+Esperado:
+- 4 produtos em grid 2 colunas no desktop, 1 coluna no mobile
+- Produtos 2 e 4 deslocados para baixo no desktop (mt-16), criando layout escalonado
+- Cada card: tag verde, nome, descrição, preço âmbar, botões Shopee (sólido) e ML (outlined)
+- Hover na imagem: escala sutil
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add index.html
+git commit -m "feat: seção de produtos com 4 velas, preços e botões de marketplace"
+```
+
+---
+
+## Task 6: Nossa Essência
+
+**Files:**
+- Modify: `index.html`
+
+- [ ] **Step 1: Inserir seção essência**
+
+Substitua `<!-- SEÇÕES VÃO AQUI -->` por:
+
+```html
+<!-- Divisor -->
+<div class="w-full flex justify-center py-8 text-outline-variant">
+  <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+  </svg>
+</div>
+
+<!-- Nossa Essência -->
+<section id="essencia" class="py-section-gap bg-surface-container-low">
+  <div class="max-w-7xl mx-auto px-organic-offset flex flex-col md:flex-row items-center gap-12 md:gap-20">
+
+    <!-- Imagem -->
+    <div class="w-full md:w-5/12 relative">
+      <img
+        src="https://placehold.co/500x500/eee0d5/875300?text=Nossa+Essência"
+        alt="Detalhe artesanal da vela Cálida Luz"
+        class="w-full aspect-square object-cover rounded-full border-4 border-surface shadow-sm"
+      />
+      <div class="absolute -bottom-6 -right-6 w-28 h-28 bg-secondary/10 rounded-full -z-10"></div>
+    </div>
+
+    <!-- Texto -->
+    <div class="w-full md:w-7/12">
+      <div class="bg-surface p-8 md:p-12 rounded-2xl border border-outline-variant/30 relative">
+        <span class="material-symbols-outlined absolute top-4 right-4 text-outline-variant opacity-40" style="font-size: 48px;">local_fire_department</span>
+        <h2 class="font-display text-3xl text-primary mb-6">Nossa Essência</h2>
+        <p class="text-on-surface-variant leading-relaxed mb-8">
+          Acreditamos no ritmo suave dos domingos de manhã. Nossas velas não são apenas objetos — são rituais de pausa.
+          Produzidas artesanalmente em pequenos lotes, utilizamos cera de soja 100% biodegradável, livre de parafinas e derivados de petróleo.
+          Com pavios de algodão trançado, garantimos uma queima limpa que respeita o seu ar e o nosso planeta.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <div class="flex items-center gap-2 bg-secondary-container/50 px-4 py-2 rounded-full text-on-secondary-container text-xs font-medium uppercase tracking-wider">
+            <span class="material-symbols-outlined" style="font-size: 16px;">eco</span> Cera Natural
+          </div>
+          <div class="flex items-center gap-2 bg-secondary-container/50 px-4 py-2 rounded-full text-on-secondary-container text-xs font-medium uppercase tracking-wider">
+            <span class="material-symbols-outlined" style="font-size: 16px;">pets</span> Cruelty Free
+          </div>
+          <div class="flex items-center gap-2 bg-secondary-container/50 px-4 py-2 rounded-full text-on-secondary-container text-xs font-medium uppercase tracking-wider">
+            <span class="material-symbols-outlined" style="font-size: 16px;">pan_tool</span> Artesanal
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SEÇÕES VÃO AQUI -->
+```
+
+- [ ] **Step 2: Verificar no browser**
+
+Esperado: imagem circular à esquerda, card com texto à direita. Mobile: empilhado verticalmente.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add index.html
+git commit -m "feat: seção Nossa Essência com story da marca"
+```
+
+---
+
+## Task 7: Timeline "Como é Feita"
+
+**Files:**
+- Modify: `index.html`
+
+- [ ] **Step 1: Inserir seção timeline**
+
+Substitua `<!-- SEÇÕES VÃO AQUI -->` por:
+
+```html
+<!-- Como é Feita -->
+<section id="como-e-feita" class="py-section-gap px-organic-offset max-w-7xl mx-auto">
+  <div class="text-center mb-16">
+    <h2 class="font-display text-3xl md:text-4xl text-on-background mb-4">Do início à chama</h2>
+    <p class="text-on-surface-variant max-w-md mx-auto">Cada vela passa por um processo cuidadoso, feito à mão e com intenção.</p>
+  </div>
+
+  <!-- Timeline desktop: horizontal | mobile: vertical -->
+  <div class="relative">
+    <!-- Linha conectora desktop -->
+    <div class="hidden md:block absolute top-10 left-0 right-0 h-0.5 bg-outline-variant/40 mx-16"></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 relative">
+
+      <!-- Etapa 1 -->
+      <div class="flex md:flex-col items-start md:items-center gap-4 md:gap-4 md:text-center">
+        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-2xl z-10">🧴</div>
+        <div>
+          <h3 class="font-display text-lg text-on-background mb-1">Cera de Soja</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">Matéria-prima natural, selecionada e biodegradável</p>
+        </div>
+      </div>
+
+      <!-- Etapa 2 -->
+      <div class="flex md:flex-col items-start md:items-center gap-4 md:gap-4 md:text-center">
+        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-2xl z-10">🌸</div>
+        <div>
+          <h3 class="font-display text-lg text-on-background mb-1">Fragrância</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">Blend artesanal de óleos essenciais naturais</p>
+        </div>
+      </div>
+
+      <!-- Etapa 3 -->
+      <div class="flex md:flex-col items-start md:items-center gap-4 md:gap-4 md:text-center">
+        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-2xl z-10">🧵</div>
+        <div>
+          <h3 class="font-display text-lg text-on-background mb-1">Pavio</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">Algodão trançado à mão para queima limpa</p>
+        </div>
+      </div>
+
+      <!-- Etapa 4 -->
+      <div class="flex md:flex-col items-start md:items-center gap-4 md:gap-4 md:text-center">
+        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-2xl z-10">⏳</div>
+        <div>
+          <h3 class="font-display text-lg text-on-background mb-1">Repouso</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">48h de cura para cristalização perfeita</p>
+        </div>
+      </div>
+
+      <!-- Etapa 5 -->
+      <div class="flex md:flex-col items-start md:items-center gap-4 md:gap-4 md:text-center">
+        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-2xl z-10">📦</div>
+        <div>
+          <h3 class="font-display text-lg text-on-background mb-1">Embalagem</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">Papel reciclado e carinho em cada detalhe</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÕES VÃO AQUI -->
+```
+
+- [ ] **Step 2: Verificar no browser**
+
+Esperado: 5 etapas em linha no desktop com linha conectora no topo dos ícones. Mobile: lista vertical empilhada.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add index.html
+git commit -m "feat: timeline artesanal Como é Feita com 5 etapas"
+```
+
+---
+
+## Task 8: Depoimentos
+
+**Files:**
+- Modify: `index.html`
+
+- [ ] **Step 1: Inserir seção de depoimentos**
+
+Substitua `<!-- SEÇÕES VÃO AQUI -->` por:
+
+```html
+<!-- Depoimentos -->
+<section id="stories" class="py-section-gap bg-surface-container relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-80 h-80 bg-primary-fixed/20 blob-shape -z-10 mix-blend-multiply blur-3xl pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-organic-offset">
+    <h2 class="font-display text-3xl md:text-4xl text-center text-primary mb-16">Ecos da Luz</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min">
+
+      <!-- Depoimento 1 (largo) -->
+      <div class="bg-surface p-8 rounded-2xl border border-outline-variant/20 md:col-span-2 shadow-sm md:-rotate-1">
+        <span class="material-symbols-outlined text-primary mb-4 block" style="font-size: 32px; font-variation-settings: 'FILL' 1;">format_quote</span>
+        <p class="text-on-surface italic text-lg leading-relaxed mb-6">"Acender a 'Madeiras Calmas' virou meu ritual de fim de expediente. É impressionante como o aroma preenche a sala de estar inteira sem ser enjoativo. A queima é linda e limpa."</p>
+        <p class="text-xs uppercase tracking-widest text-on-surface-variant">— Mariana C.</p>
+      </div>
+
+      <!-- Depoimento 2 -->
+      <div class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/20 shadow-sm md:mt-12">
+        <span class="material-symbols-outlined text-primary mb-4 block" style="font-size: 32px; font-variation-settings: 'FILL' 1;">format_quote</span>
+        <p class="text-on-surface leading-relaxed mb-6">"Comprei para presentear e acabei ficando para mim. A embalagem é um capricho só, dá pra sentir o carinho do trabalho manual."</p>
+        <p class="text-xs uppercase tracking-widest text-on-surface-variant">— Lucas T.</p>
+      </div>
+
+      <!-- Depoimento 3 (largo) -->
+      <div class="bg-surface-container-high p-8 rounded-2xl border border-outline-variant/20 md:col-start-2 md:col-span-2 shadow-sm">
+        <span class="material-symbols-outlined text-primary mb-4 block" style="font-size: 32px; font-variation-settings: 'FILL' 1;">format_quote</span>
+        <p class="text-on-surface leading-relaxed mb-6">"Finalmente uma vela de soja de verdade! Dura muito mais que as velas comuns e o cheiro da 'Brisa de Lavanda' me ajuda muito a relaxar antes de dormir."</p>
+        <p class="text-xs uppercase tracking-widest text-on-surface-variant">— Sofia R.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÕES VÃO AQUI -->
+```
+
+- [ ] **Step 2: Verificar no browser**
+
+Esperado: layout bento assimétrico — primeiro depoimento ocupa 2 colunas, com rotação sutil. Terceiro aparece na coluna 2-3.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add index.html
+git commit -m "feat: seção de depoimentos com layout bento assimétrico"
+```
+
+---
+
+## Task 9: Grid de Instagram Mockado
+
+**Files:**
+- Modify: `index.html`
+
+- [ ] **Step 1: Inserir seção de Instagram**
+
+Substitua `<!-- SEÇÕES VÃO AQUI -->` por:
+
+```html
+<!-- Instagram -->
+<section class="py-section-gap px-organic-offset max-w-7xl mx-auto">
+  <div class="text-center mb-12">
+    <h2 class="font-display text-3xl text-on-background mb-2">Nos acompanhe</h2>
+    <a href="https://instagram.com/calidaluz" target="_blank" rel="noopener" class="text-primary font-medium hover:opacity-70 transition-opacity">@calidaluz</a>
+  </div>
+
+  <div class="grid grid-cols-3 gap-2 md:gap-3 mb-10 max-w-2xl mx-auto">
+    <a href="https://instagram.com/calidaluz" target="_blank" rel="noopener" class="aspect-square overflow-hidden rounded-lg group">
+      <img src="https://placehold.co/300x300/f4e6da/875300?text=✦" alt="Post Instagram Cálida Luz" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+    </a>
+    <a href="https://instagram.com/calidaluz" target="_blank" rel="noopener" class="aspect-square overflow-hidden rounded-lg group">
+      <img src="https://placehold.co/300x300/eee0d5/524436?text=🕯" alt="Post Instagram Cálida Luz" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+    </a>
+    <a href="https://instagram.com/calidaluz" target="_blank" rel="noopener" class="aspect-square overflow-hidden rounded-lg group">
+      <img src="https://placehold.co/300x300/dce7c1/586244?text=🌿" alt="Post Instagram Cálida Luz" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+    </a>
+    <a href="https://instagram.com/calidaluz" target="_blank" rel="noopener" class="aspect-square overflow-hidden rounded-lg group">
+      <img src="https://placehold.co/300x300/fff1e6/d48c2c?text=✨" alt="Post Instagram Cálida Luz" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+    </a>
+    <a href="https://instagram.com/calidaluz" target="_blank" rel="noopener" class="aspect-square overflow-hidden rounded-lg group">
+      <img src="https://placehold.co/300x300/e5d8cc/857464?text=🔥" alt="Post Instagram Cálida Luz" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+    </a>
+    <a href="https://instagram.com/calidaluz" target="_blank" rel="noopener" class="aspect-square overflow-hidden rounded-lg group">
+      <img src="https://placehold.co/300x300/faebe0/875300?text=🌸" alt="Post Instagram Cálida Luz" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+    </a>
+  </div>
+
+  <div class="text-center">
+    <a href="https://instagram.com/calidaluz" target="_blank" rel="noopener" class="inline-block border border-primary text-primary px-8 py-3 rounded-lg font-medium hover:bg-primary hover:text-on-primary transition-colors duration-300">
+      Seguir no Instagram
+    </a>
+  </div>
+</section>
+
+<!-- SEÇÕES VÃO AQUI -->
+```
+
+- [ ] **Step 2: Verificar no browser**
+
+Esperado: grid 3×2 de fotos quadradas com cores variadas, hover com zoom sutil, botão "Seguir no Instagram" outlined.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add index.html
+git commit -m "feat: grid de Instagram mockado 3x2 com link para perfil"
+```
+
+---
+
+## Task 10: Captura de Email
+
+**Files:**
+- Modify: `index.html`
+
+- [ ] **Step 1: Inserir seção de captura de email**
+
+Substitua `<!-- SEÇÕES VÃO AQUI -->` por:
+
+```html
+<!-- Lista de Espera -->
+<section class="py-section-gap bg-surface-container-low">
+  <div class="max-w-2xl mx-auto px-organic-offset text-center">
+    <span class="material-symbols-outlined text-primary mb-4 block" style="font-size: 36px;">mail</span>
+    <h2 class="font-display text-3xl text-on-background mb-4">Fique por dentro</h2>
+    <p class="text-on-surface-variant mb-10 leading-relaxed">
+      Receba novidades, lançamentos e promoções em primeira mão. Sem spam — só o que realmente importa.
+    </p>
+
+    <form id="email-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <input
+        type="email"
+        required
+        placeholder="seu@email.com"
+        class="flex-1 bg-surface border border-outline-variant rounded-lg px-4 py-3 text-on-surface placeholder-on-surface-variant/60 focus:outline-none focus:border-primary transition-colors"
+      />
+      <button type="submit" class="bg-primary text-on-primary px-6 py-3 rounded-lg font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors whitespace-nowrap">
+        Quero receber
+      </button>
+    </form>
+
+    <div id="email-success" class="hidden">
+      <div class="flex items-center justify-center gap-3 text-secondary">
+        <span class="material-symbols-outlined">check_circle</span>
+        <p class="font-medium">Ótimo! Você está na lista. Até breve 🕯️</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÕES VÃO AQUI -->
+```
+
+- [ ] **Step 2: Verificar no browser**
+
+Esperado: input de email + botão lado a lado no desktop, empilhados no mobile. Submeter o form esconde o form e mostra mensagem de confirmação.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add index.html
+git commit -m "feat: seção de captura de email com feedback visual"
+```
+
+---
+
+## Task 11: Rodapé
+
+**Files:**
+- Modify: `index.html`
+
+- [ ] **Step 1: Inserir rodapé antes do bloco `<script>`**
+
+Substitua `<!-- SEÇÕES VÃO AQUI -->` por:
+
+```html
+<!-- Rodapé -->
+<footer class="bg-inverse-surface text-inverse-on-surface rounded-t-[3rem] mt-12">
+  <div class="max-w-7xl mx-auto px-organic-offset py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+
+      <!-- Logo e tagline -->
+      <div>
+        <a href="#" class="font-display text-2xl italic text-inverse-primary block mb-3">Cálida Luz</a>
+        <p class="text-inverse-on-surface/70 text-sm leading-relaxed">Velas artesanais de soja,<br/>feitas com intenção e carinho.</p>
+        <div class="flex gap-4 mt-6">
+          <a href="https://instagram.com/calidaluz" target="_blank" rel="noopener" class="text-inverse-on-surface/60 hover:text-inverse-primary transition-colors text-sm">Instagram</a>
+          <a href="#" class="text-inverse-on-surface/60 hover:text-inverse-primary transition-colors text-sm">TikTok</a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <p class="text-xs uppercase tracking-widest text-inverse-on-surface/50 mb-4 font-medium">Navegação</p>
+        <nav class="flex flex-col gap-3">
+          <a href="#shop" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Shop</a>
+          <a href="#essencia" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Nossa Essência</a>
+          <a href="#como-e-feita" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Como é Feita</a>
+          <a href="#stories" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Depoimentos</a>
+        </nav>
+      </div>
+
+      <!-- Marketplaces e contato -->
+      <div>
+        <p class="text-xs uppercase tracking-widest text-inverse-on-surface/50 mb-4 font-medium">Comprar</p>
+        <div class="flex flex-col gap-3">
+          <a href="#" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm flex items-center gap-2">
+            <span class="material-symbols-outlined" style="font-size: 16px;">storefront</span> Shopee
+          </a>
+          <a href="#" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm flex items-center gap-2">
+            <span class="material-symbols-outlined" style="font-size: 16px;">storefront</span> Mercado Livre
+          </a>
+          <a href="mailto:contato@calidaluz.com.br" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm flex items-center gap-2">
+            <span class="material-symbols-outlined" style="font-size: 16px;">mail</span> Contato
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t border-inverse-on-surface/10 pt-8 text-center">
+      <p class="text-inverse-on-surface/50 text-xs">© 2025 Cálida Luz. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+```
+
+- [ ] **Step 2: Verificar no browser**
+
+Esperado: rodapé escuro (marrom), 3 colunas no desktop, empilhado no mobile. Logo em itálico, links de nav, links de marketplace, copyright no fundo.
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add index.html
+git commit -m "feat: rodapé com logo, navegação, marketplaces e copyright"
+```
+
+---
+
+## Task 12: Revisão Mobile e Ajustes Finais
+
+**Files:**
+- Modify: `index.html` — pequenos ajustes de espaçamento e usabilidade mobile conforme necessário
+
+- [ ] **Step 1: Testar em 375px (iPhone SE)**
+
+Abra o DevTools do browser → Toggle device toolbar → selecione "iPhone SE" (375×667).
+
+Verifique item a item:
+- [ ] Nav: hamburguer visível, logo não corta
+- [ ] Hero: texto legível, imagem não quebra layout, botões empilham corretamente
+- [ ] Selos: grid 2×2 alinhado
+- [ ] Produtos: 1 coluna, botões Shopee e ML lado a lado (não empilhados — eles têm espaço suficiente com `flex-1`)
+- [ ] Essência: imagem circular centralizada, texto abaixo
+- [ ] Timeline: etapas em coluna vertical
+- [ ] Depoimentos: cards em coluna única
+- [ ] Instagram: grid 3×2 mantido (fotos menores)
+- [ ] Email: input e botão empilhados
+- [ ] Rodapé: 3 blocos em coluna única
+
+- [ ] **Step 2: Corrigir qualquer overflow horizontal**
+
+Se aparecer scroll horizontal, adicione `overflow-x: hidden` no `body` (já está no CSS base via classe `overflow-x-hidden`). Se algum elemento ultrapassar a tela, identifique e adicione `max-w-full` ou ajuste padding.
+
+- [ ] **Step 3: Testar navegação âncora**
+
+Clique em todos os links de nav (Shop, Essência, Como é Feita, Stories) e confirme que levam às seções corretas com scroll suave.
+
+Para adicionar scroll suave, inclua no `<style>`:
+```css
+html { scroll-behavior: smooth; }
+```
+
+- [ ] **Step 4: Commit final**
+
+```bash
+git add index.html
+git commit -m "feat: ajustes de responsividade mobile e scroll suave"
+```
+
+---
+
+## Task 13: Salvar Memórias e Links para Atualização Futura
+
+**Files:**
+- Modify: `index.html` — adicionar comentários nos pontos de substituição
+
+- [ ] **Step 1: Adicionar comentários de TODO nos links de marketplace**
+
+Busque todos os `href="#"` nos botões de Shopee e Mercado Livre e substitua por comentários descritivos:
+
+```html
+<!-- TODO: substituir href="#" pelo link real da Shopee quando disponível -->
+<a href="#" class="flex-1 text-center bg-primary ...">Shopee</a>
+<!-- TODO: substituir href="#" pelo link real do Mercado Livre quando disponível -->
+<a href="#" class="flex-1 text-center border border-primary ...">Mercado Livre</a>
+```
+
+- [ ] **Step 2: Adicionar comentários nos placeholders de imagem**
+
+Nos `src` das imagens de produto, adicione comentário acima de cada `<img>`:
+
+```html
+<!-- TODO: substituir src pelo caminho da foto real da vela -->
+<img src="https://placehold.co/600x500/f4e6da/875300?text=Brisa+de+Lavanda" .../>
+```
+
+- [ ] **Step 3: Adicionar comentário no grid de Instagram**
+
+Acima do grid do Instagram, adicione:
+
+```html
+<!-- TODO: substituir grid por embed real do Instagram (ex: Elfsight, Smash Balloon) quando conta estiver criada -->
+```
+
+- [ ] **Step 4: Commit final do projeto**
+
+```bash
+git add index.html
+git commit -m "docs: comentários de TODO para conteúdo a substituir no futuro"
+```
+
+---
+
+## Checklist de Entrega
+
+- [ ] `index.html` na raiz com todas as 10 seções
+- [ ] Nav fixa com hamburguer mobile funcional
+- [ ] 4 produtos com preço e botões de marketplace
+- [ ] Timeline "Como é Feita" responsiva
+- [ ] Grid de Instagram mockado
+- [ ] Captura de email com feedback JS
+- [ ] Rodapé completo
+- [ ] Sem scroll horizontal em 375px
+- [ ] Scroll suave nas âncoras de nav
+- [ ] Comentários TODO nos pontos de substituição futura

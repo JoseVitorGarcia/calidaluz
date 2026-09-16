@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cálida Luz - Velas Artesanales</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&amp;family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@100..700,0..1,-50..200,20..48&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#004c68",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#ffb965",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#38a6d7",
+                    "surface-container-low": "#fff1e6",
+                    "surface-variant": "#eee0d5",
+                    "outline-variant": "#d7c3b0",
+                    "on-background": "#211a14",
+                    "on-secondary-fixed": "#161e07",
+                    "tertiary-fixed-dim": "#79d1ff",
+                    "primary": "#875300",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#eee0d5",
+                    "background": "#fff8f4",
+                    "secondary-container": "#dce7c1",
+                    "outline": "#857464",
+                    "on-tertiary-container": "#00384d",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#faebe0",
+                    "inverse-on-surface": "#fceee3",
+                    "inverse-surface": "#372f28",
+                    "tertiary": "#006689",
+                    "surface-container-high": "#f4e6da",
+                    "on-surface": "#211a14",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#663d00",
+                    "secondary-fixed": "#dce7c1",
+                    "secondary-fixed-dim": "#c0cba7",
+                    "tertiary-fixed": "#c3e8ff",
+                    "surface-tint": "#875300",
+                    "primary-container": "#d48c2c",
+                    "on-primary": "#ffffff",
+                    "secondary": "#586244",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#001e2c",
+                    "on-surface-variant": "#524436",
+                    "on-secondary-fixed-variant": "#414a2e",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#ffddba",
+                    "surface-bright": "#fff8f4",
+                    "on-secondary-container": "#5e684a",
+                    "inverse-primary": "#ffb965",
+                    "surface": "#fff8f4",
+                    "on-primary-fixed": "#2b1700",
+                    "surface-dim": "#e5d8cc",
+                    "on-primary-container": "#4b2c00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "organic-offset": "1.5rem",
+                    "unit": "8px",
+                    "section-gap": "5rem"
+            },
+            "fontFamily": {
+                    "body-lg": [
+                            "DM Sans"
+                    ],
+                    "body-md": [
+                            "DM Sans"
+                    ],
+                    "label-sm": [
+                            "DM Sans"
+                    ],
+                    "display-lg": [
+                            "Libre Caslon Text"
+                    ],
+                    "headline-lg": [
+                            "Libre Caslon Text"
+                    ],
+                    "headline-md": [
+                            "Libre Caslon Text"
+                    ]
+            },
+            "fontSize": {
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.0",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #fff8f4; }
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .blob-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        .leaf-shape {
+            border-radius: 0 50% 0 50%;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md text-on-surface antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-surface/10 transition-transform duration-300 transform translate-y-0" id="navbar">
+<div class="flex justify-between items-center w-full px-organic-offset py-6 max-w-7xl mx-auto">
+<a class="font-headline-md text-headline-md italic text-primary hover:opacity-80 transition-opacity duration-300" href="#">Cálida Luz</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors hover:opacity-80 duration-300" href="#shop">Shop</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors hover:opacity-80 duration-300" href="#essence">Essence</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors hover:opacity-80 duration-300" href="#stories">Stories</a>
+</div>
+<div class="flex items-center">
+<button class="scale-95 active:scale-90 transition-transform hover:opacity-80 duration-300 text-primary">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="min-h-screen pt-32 pb-section-gap px-organic-offset max-w-7xl mx-auto flex flex-col md:flex-row items-center relative">
+<div class="absolute top-20 left-10 w-64 h-64 bg-surface-variant/50 blob-shape -z-10 mix-blend-multiply filter blur-3xl opacity-60"></div>
+<div class="w-full md:w-1/2 z-10 pr-0 md:pr-12 text-center md:text-left pt-12 md:pt-0">
+<h1 class="font-display-lg text-display-lg text-on-background mb-6">Luz que abraça,<br/><span class="italic text-primary">calor que transforma.</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-md mx-auto md:mx-0">Velas artesanais feitas com cera de soja e intenção. Cada chama é um convite para desacelerar e voltar para casa.</p>
+<a class="inline-block bg-primary text-on-primary px-8 py-3 rounded-lg font-body-md hover:bg-primary-container hover:text-on-primary-container transition-colors duration-300" href="#shop">Descobrir a Coleção</a>
+</div>
+<div class="w-full md:w-1/2 mt-16 md:mt-0 relative">
+<div class="absolute -right-10 -bottom-10 w-full h-full bg-secondary-container/30 leaf-shape -z-10"></div>
+<img alt="Uma vela artesanal Cálida Luz acesa em um ambiente aconchegante, iluminando suavemente a cera de soja natural." class="w-full h-auto object-cover rounded-tl-[4rem] rounded-br-[4rem] shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFMSYJk_FrtgQGe6KJCjNas4Q_rIQPiKYKaQpQma6wgvl8Taqzpq2GLb5apOTRXGRL_uXyj_ySl237lHQSyY-hvU27IqS332J7-B04N5utodX1nUTmMUmYrwbgBKZu9Fz090IMY96_a9OqASocPCskC9ZS6t4n-GbMP1znLWUyNL1IZEzkQfcVWi3nzI-7Q5vGDfF8IWXkklM2YNSUpCKBjL7cnkTt4ed_xGl6HncJTvtVGlyEdN8vquxJZNb14JzOoA"/>
+<!-- Hand-drawn flourish SVG -->
+<svg class="absolute -left-12 top-1/4 w-24 h-24 text-primary opacity-50 hidden md:block" fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 50 Q 30 20 50 50 T 90 50" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<path d="M45 45 L 50 50 L 55 45" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+</section>
+<!-- Essence Section -->
+<section class="py-section-gap bg-surface-container-low relative" id="essence">
+<div class="max-w-7xl mx-auto px-organic-offset flex flex-col md:flex-row items-center">
+<div class="w-full md:w-5/12 mb-12 md:mb-0 relative z-10">
+<img alt="Detalhe do rótulo artesanal e elegante da vela Cálida Luz, mostrando a textura do papel reciclado e o design botânico." class="w-full h-auto object-cover rounded-full aspect-square border-4 border-surface shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs-8FKwIseMF0lHuTNgxkqt7MnK9J6XoyXl5FwjFGbkSeeyWJwJf4SfbHvdp8l6UjjArNHmzsKXHpP02_5bZs0JQ2737JrChchAnBR56emL1nkYGEztpM2FzOvB12NTrkxlZgw53sf9HYbe_nwCguum9PWZ_vvtZeErFsAp3KAC9CjVz_OExccjNOkpd3sPUgHbMmLTuybR73a6y28o3gPrQo5mKxMI8xxSbHcMP78FGk9SEqtpeBEgiD97WKXTWlFow"/>
+<div class="absolute -bottom-8 -right-8 w-32 h-32 bg-secondary/10 rounded-full -z-10"></div>
+</div>
+<div class="w-full md:w-7/12 md:pl-20 text-center md:text-left z-20 md:-ml-12 mt-12 md:mt-0">
+<div class="bg-surface p-8 md:p-12 rounded-2xl border border-outline-variant/30 relative">
+<span class="material-symbols-outlined absolute top-4 right-4 text-outline-variant opacity-50" style="font-size: 48px;">local_fire_department</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Nossa Essência</h2>
+<p class="font-body-md text-on-surface-variant mb-8">
+                        Acreditamos no ritmo suave dos domingos de manhã. Nossas velas não são apenas objetos, são rituais de pausa. 
+                        Produzidas artesanalmente em pequenos lotes, utilizamos cera de soja 100% biodegradável, livre de parafinas e derivados de petróleo. 
+                        Com pavios de algodão trançado, garantimos uma queima limpa que respeita o seu ar e o nosso planeta.
+                    </p>
+<div class="flex flex-wrap gap-4 justify-center md:justify-start">
+<div class="flex items-center gap-2 bg-secondary-fixed-dim/30 px-4 py-2 rounded-full text-on-secondary-container font-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined" style="font-size: 18px;">eco</span> Cera Natural
+                        </div>
+<div class="flex items-center gap-2 bg-secondary-fixed-dim/30 px-4 py-2 rounded-full text-on-secondary-container font-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined" style="font-size: 18px;">pets</span> Cruelty Free
+                        </div>
+<div class="flex items-center gap-2 bg-secondary-fixed-dim/30 px-4 py-2 rounded-full text-on-secondary-container font-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined" style="font-size: 18px;">pan_tool</span> Artesanal
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="w-full flex justify-center py-12 text-outline-variant">
+<svg fill="none" height="40" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" width="40">
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+</svg>
+</div>
+<!-- Products (Staggered Layout) -->
+<section class="py-section-gap px-organic-offset max-w-7xl mx-auto" id="shop">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">Aconchego em Chamas</h2>
+<p class="font-body-md text-on-surface-variant max-w-xl mx-auto">Escolha a fragrância que guiará o seu próximo momento de respiro.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
+<!-- Product 1 -->
+<div class="md:col-span-5 md:mt-24 group">
+<div class="relative overflow-hidden rounded-t-[3rem] rounded-bl-[3rem] mb-6">
+<img alt="Vela artesanal Cálida Luz com aroma de lavanda, textura suave e pavio de algodão." class="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt2KosgdQOs4kWjl_KKolVrJ9FNgPEzT80_co8xvZflRvltwQD0IGjld9Yu-cig7KVp7hNu-IWUM_x9N5y8RT9u0qF49SJchx0JwI4TQ1KC9Hr71LLukYLzTPjs0rVAu9MGKmbIpI9-Jd09fgquXb39ur6sJPF7KzQ14S-h4fDWYKEd4trcjc4imPXJa3CUClwhEXD5gUwQ9KaRW1gsXB8kNacy3PZBd9bi8Bx1RgZBRV0QcnpkXsKbN_ygpyN-uLq-A"/>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-500"></div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Brisa de Lavanda</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Campos floridos e a promessa de um sono tranquilo. Notas de lavanda francesa e um toque de baunilha.</p>
+<div class="flex gap-4">
+<a class="flex-1 text-center bg-primary text-on-primary px-4 py-2 rounded-lg font-body-md hover:bg-primary-container transition-colors" href="#">Shopee</a>
+<a class="flex-1 text-center border border-secondary text-secondary px-4 py-2 rounded-lg font-body-md hover:bg-secondary/10 transition-colors" href="#">Mercado Livre</a>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="md:col-span-7 group">
+<div class="relative overflow-hidden rounded-tr-[5rem] rounded-b-xl mb-6">
+<img alt="Vela artesanal Cálida Luz acesa, emitindo um brilho quente e dourado em um recipiente de vidro minimalista." class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDNWQkagQyxBalCGo-qePNjZuMN3J6phkdd4Tes02z_Is5xhXCwipjhATjnlW8F_YUIE5ekiD02gk6yDw4ha0nXuYX7FHv5pJLWqxwWLUlgsIJ2rVNeJeoK0xIN5Hk2Y00h3xOKyXIC8x2uulj7SgW1uW_lSfuzqVZHNbr9OMeQf0rZiKnMVe48XwYaCmD4F84s1nbUA62JvNwxdN21fAS-G8-fZbwFUvQL-GiCgFHTGk_3VxOvYLO0eBgPGJ8eKhvDg"/>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-500"></div>
+</div>
+<div class="max-w-md ml-auto">
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Madeiras Calmas</h3>
+<p class="font-body-md text-on-surface-variant mb-6">O calor de uma cabana rústica. Cedro, sândalo e um leve esfumaçado para aterrar a mente inquieta.</p>
+<div class="flex gap-4">
+<a class="flex-1 text-center bg-primary text-on-primary px-4 py-2 rounded-lg font-body-md hover:bg-primary-container transition-colors" href="#">Shopee</a>
+<a class="flex-1 text-center border border-secondary text-secondary px-4 py-2 rounded-lg font-body-md hover:bg-secondary/10 transition-colors" href="#">Mercado Livre</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials (Bento/Asymmetric) -->
+<section class="py-section-gap bg-surface-container relative overflow-hidden" id="stories">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary-fixed/20 blob-shape -z-10 mix-blend-multiply blur-3xl"></div>
+<div class="max-w-7xl mx-auto px-organic-offset">
+<h2 class="font-headline-lg text-headline-lg text-center text-primary mb-16">Ecos da Luz</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 auto-rows-min">
+<div class="bg-surface p-8 rounded-2xl border border-outline-variant/20 md:col-span-2 shadow-sm transform md:-rotate-1">
+<span class="material-symbols-outlined text-primary mb-4" style="font-size: 32px; font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="font-body-lg text-on-surface italic mb-6">"Acender a 'Madeiras Calmas' virou meu ritual de fim de expediente. É impressionante como o aroma preenche a sala de estar inteira sem ser enjoativo. A queima é linda e limpa."</p>
+<p class="font-label-sm uppercase tracking-wider text-on-surface-variant">- Mariana C.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/20 shadow-sm md:mt-12">
+<span class="material-symbols-outlined text-primary mb-4" style="font-size: 32px; font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="font-body-md text-on-surface mb-6">"Comprei para presentear e acabei ficando para mim. A embalagem é um capricho só, dá pra sentir o carinho do trabalho manual."</p>
+<p class="font-label-sm uppercase tracking-wider text-on-surface-variant">- Lucas T.</p>
+</div>
+<div class="bg-surface-container-high p-8 rounded-2xl border border-outline-variant/20 md:col-start-2 md:col-span-2 shadow-sm">
+<span class="material-symbols-outlined text-primary mb-4" style="font-size: 32px; font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="font-body-md text-on-surface mb-6">"Finalmente uma vela de soja de verdade! Dura muito mais que as velas comuns e o cheiro da 'Brisa de Lavanda' me ajuda muito a relaxar antes de dormir."</p>
+<p class="font-label-sm uppercase tracking-wider text-on-surface-variant">- Sofia R.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-low full-width rounded-t-[3rem] border-t border-outline-variant/20 mt-12">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-organic-offset py-section-gap gap-8 text-center md:text-left max-w-7xl mx-auto">
+<div class="flex flex-col items-center md:items-start">
+<a class="font-headline-lg text-headline-lg text-primary mb-4 hover:text-primary cursor-pointer transition-opacity opacity-100 hover:opacity-70" href="#">Cálida Luz</a>
+<p class="font-body-md text-body-md text-secondary">© 2024 Cálida Luz. Velas Artesanales.</p>
+</div>
+<nav class="flex flex-col md:flex-row gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer opacity-100 hover:opacity-70" href="#">Sustainability</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer opacity-100 hover:opacity-70" href="#">Contact</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer opacity-100 hover:opacity-70" href="#">Shipping</a>
+</nav>
+</div>
+</footer>
+<script>
+        // Simple nav hide/show on scroll for a touch of interaction
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scroll down
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Scroll up
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }, false);
+    </script>
+</body></html>
