@@ -1,0 +1,16 @@
+# Ferramentas e ambiente local (o Pages serve o repositório inteiro)
+.claude/
+.superpowers/
+docs/
+stitch_c_lida_luz_e_commerce_design/
+
+# Segredos e lixo de sistema/editor
+.env
+.env.*
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Notas internas do produto
+PRODUCT.md

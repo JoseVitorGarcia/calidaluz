@@ -3,10 +3,28 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Cálida Luz — Velas artesanais de soja feitas à mão. Compre na Shopee e Mercado Livre."/>
+  <meta name="description" content="Velas artesanais de cera de soja feitas à mão em pequenos lotes, com decoração esculpida em cada peça. Encontre a Cálida Luz na Shopee e no Mercado Livre."/>
+  <meta name="theme-color" content="#fff8f4"/>
+  <meta name="robots" content="index, follow, max-image-preview:large"/>
+  
+  <link rel="canonical" href="https://calidaluz.com.br/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="pt_BR"/>
+  <meta property="og:site_name" content="Cálida Luz"/>
+  <meta property="og:title" content="Cálida Luz — Velas Artesanais de Soja Feitas à Mão"/>
+  <meta property="og:description" content="Velas artesanais de cera de soja, esculpidas à mão em pequenos lotes. Luz que abraça, calor que transforma."/>
+  <meta property="og:url" content="https://calidaluz.com.br/"/>
+  <meta property="og:image" content="https://calidaluz.com.br/logo.jpeg"/>
+  <meta property="og:image:width" content="1254"/>
+  <meta property="og:image:height" content="1254"/>
+  <meta property="og:image:alt" content="Cálida Luz — Velas Artesanais"/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Cálida Luz — Velas Artesanais de Soja Feitas à Mão"/>
+  <meta name="twitter:description" content="Velas artesanais de cera de soja, esculpidas à mão em pequenos lotes."/>
+  <meta name="twitter:image" content="https://calidaluz.com.br/logo.jpeg"/>
   <meta name="referrer" content="strict-origin-when-cross-origin"/>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self';"/>
-  <title>Cálida Luz — Velas Artesanais</title>
+  <title>Cálida Luz — Velas Artesanais de Soja Feitas à Mão</title>
   <link rel="icon" href="favicon.ico" sizes="any"/>
   <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32"/>
   <link rel="icon" type="image/png" href="favicon-16.png" sizes="16x16"/>
@@ -14,6 +32,55 @@
   <script src="https://cdn.tailwindcss.com/3.4.17?plugins=forms@0.5.10,container-queries@0.1.1"></script>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
   <script src="https://unpkg.com/lucide@1.46.0/dist/umd/lucide.min.js" integrity="sha384-1avDoIZZ5mKtAlvTbQ2jge+TZA4z+qwhMFHdCpATww/SLVM8wKs7sROOEKMOizyV" crossorigin="anonymous"></script>
+  <!-- TODO: adicionar "offers" (preço e link do marketplace) em cada Product quando os valores reais forem confirmados -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://calidaluz.com.br/#organization",
+        "name": "Cálida Luz",
+        "url": "https://calidaluz.com.br/",
+        "logo": "https://calidaluz.com.br/logo-round.png",
+        "email": "acalidaluz@gmail.com",
+        "sameAs": [
+          "https://instagram.com/cali_daluz"
+        ]
+      },
+      {
+        "@type": "Product",
+        "name": "Vela Orquídea Dourada",
+        "description": "Vela cilíndrica branca em cera de soja pura, para compor com arranjos florais.",
+        "image": "https://calidaluz.com.br/vela-orquidea-dourada.jpeg",
+        "brand": {
+          "@id": "https://calidaluz.com.br/#organization"
+        },
+        "material": "Cera de soja"
+      },
+      {
+        "@type": "Product",
+        "name": "Vela Jardim Rubi",
+        "description": "Pote de vidro em vermelho intenso, decorado à mão com rosas de cera e uma rodela de fruta cristalizada.",
+        "image": "https://calidaluz.com.br/vela-jardim-rubi.jpeg",
+        "brand": {
+          "@id": "https://calidaluz.com.br/#organization"
+        },
+        "material": "Cera de soja"
+      },
+      {
+        "@type": "Product",
+        "name": "Vela Flor da Meia-Noite",
+        "description": "Tons profundos de azul com um aplique floral esculpido à mão no topo.",
+        "image": "https://calidaluz.com.br/vela-flor-meia-noite.jpeg",
+        "brand": {
+          "@id": "https://calidaluz.com.br/#organization"
+        },
+        "material": "Cera de soja"
+      }
+    ]
+  }
+  </script>
   <script id="tailwind-config">
     tailwind.config = {
       theme: {
@@ -87,20 +154,30 @@
     }
   </script>
   <style>
-    body { background-color: #fff8f4; }
-.blob-shape { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+    .blob-shape { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
     .leaf-shape { border-radius: 0 50% 0 50%; }
-    html { scroll-behavior: smooth; }
+    /* Nav fixa: âncoras internas devem parar abaixo dela. */
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
     #mobile-menu { transition: transform 0.3s ease; }
     #mobile-menu.open { transform: translateX(0); }
+    a:focus-visible, button:focus-visible { outline: 2px solid #875300; outline-offset: 2px; }
+    /* Entrada ao rolar: só esconde quando o JS está ativo (ver script no fim). */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal-hidden { opacity: 0; }
+    .reveal-in { animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      #mobile-menu { transition: none; }
+      html { scroll-behavior: auto; scroll-padding-top: 5rem; }
+      *, ::before, ::after { transition: none !important; animation: none !important; }
+      .reveal-hidden { opacity: 1; }
       .group:hover img, img:hover { transform: none !important; }
+      .product-card:hover { transform: none !important; }
     }
   </style>
 </head>
-<body class="font-body text-base text-on-surface antialiased overflow-x-hidden">
+<body class="font-body text-base text-on-surface bg-background antialiased overflow-x-hidden">
 
 <!-- Nav -->
 <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-surface/80 border-b border-outline-variant/20 transition-transform duration-300" id="navbar">
@@ -115,7 +192,7 @@
       <a href="#stories" class="text-on-surface-variant hover:text-primary transition-colors text-sm">Stories</a>
     </div>
     <div class="flex items-center gap-3">
-      <a href="#shop" class="text-primary hover:opacity-80 transition-opacity">
+      <a href="#shop" aria-label="Ver produtos" class="text-primary hover:opacity-80 transition-opacity p-2.5 -m-1.5 flex items-center justify-center">
         <i data-lucide="shopping-bag" class="w-6 h-6"></i>
       </a>
       <button id="menu-btn" class="md:hidden text-primary p-2.5 -m-1.5 flex items-center justify-center" aria-label="Abrir menu" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-menu">
@@ -136,17 +213,17 @@
   <a href="#" class="hover:opacity-80 transition-opacity">
     <img src="logo-round.png" alt="Cálida Luz" width="512" height="512" loading="lazy" class="h-16 w-16 rounded-full object-cover mb-2"/>
   </a>
-  <a href="#shop" class="mobile-link font-display text-xl italic text-primary">Shop</a>
-  <a href="#essencia" class="mobile-link text-on-surface-variant hover:text-primary transition-colors">Essência</a>
-  <a href="#como-e-feita" class="mobile-link text-on-surface-variant hover:text-primary transition-colors">Como é Feita</a>
-  <a href="#stories" class="mobile-link text-on-surface-variant hover:text-primary transition-colors">Stories</a>
+  <a href="#shop" class="mobile-link py-2 text-lg text-on-surface-variant hover:text-primary transition-colors">Shop</a>
+  <a href="#essencia" class="mobile-link py-2 text-lg text-on-surface-variant hover:text-primary transition-colors">Essência</a>
+  <a href="#como-e-feita" class="mobile-link py-2 text-lg text-on-surface-variant hover:text-primary transition-colors">Como é Feita</a>
+  <a href="#stories" class="mobile-link py-2 text-lg text-on-surface-variant hover:text-primary transition-colors">Stories</a>
   <hr class="border-outline-variant/30"/>
-  <a href="https://instagram.com/cali_daluz" target="_blank" rel="noopener" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Instagram</a>
-  <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">TikTok</a>
+  <a href="https://instagram.com/cali_daluz" target="_blank" rel="noopener" class="py-2 text-on-surface-variant hover:text-primary transition-colors">Instagram</a>
+  <a href="#" class="py-2 text-on-surface-variant hover:text-primary transition-colors">TikTok</a>
 </div>
 
 <!-- Hero -->
-<section class="min-h-screen pt-28 pb-section-gap px-organic-offset max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 relative">
+<section class="md:min-h-screen pt-28 pb-section-gap px-organic-offset max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12 relative">
   <div class="absolute top-20 left-0 w-72 h-72 bg-surface-variant/40 blob-shape -z-10 mix-blend-multiply filter blur-3xl opacity-70 pointer-events-none"></div>
   <div class="w-full md:w-1/2 z-10 text-center md:text-left">
     <p class="text-secondary font-body text-xs uppercase tracking-widest mb-4">✦ Feito à mão · Pequenos lotes</p>
@@ -166,13 +243,14 @@
       </a>
     </div>
   </div>
-  <div class="w-full md:w-1/2 relative">
+  <div class="w-full max-w-sm mx-auto md:max-w-none md:mx-0 md:w-1/2 relative">
     <div class="absolute -right-6 -bottom-6 w-full h-full bg-secondary-container/30 leaf-shape -z-10 pointer-events-none"></div>
     <img
       src="logo.jpeg"
       alt="Cálida Luz — Velas Artesanais"
       width="1254"
       height="1254"
+      fetchpriority="high"
       class="w-full h-auto object-contain rounded-tl-[4rem] rounded-br-[4rem]"
     />
     <svg class="absolute -left-10 top-1/3 w-20 h-20 text-primary opacity-40 hidden md:block pointer-events-none" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -213,10 +291,11 @@
     <p class="text-on-surface-variant max-w-lg mx-auto">Escolha a fragrância que guiará o seu próximo momento de respiro.</p>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-10">
+  <!-- Mobile: carrossel com scroll-snap (o próximo card "espia" pela borda); a partir de sm vira grade -->
+  <div id="product-carousel" class="flex snap-x snap-mandatory gap-4 overflow-x-auto -mx-organic-offset px-organic-offset scroll-pl-organic-offset pt-2 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-3 sm:gap-8 md:gap-10 sm:mx-0 sm:px-0 sm:pt-0 sm:pb-0 sm:overflow-visible sm:snap-none">
 
     <!-- Produto 1 — Orquídea Dourada -->
-    <div class="group flex flex-col">
+    <div class="product-card group flex flex-col w-[78%] shrink-0 snap-start sm:w-auto sm:shrink transition-transform duration-300 hover:-translate-y-1">
       <div class="relative overflow-hidden rounded-tl-[3rem] rounded-br-[3rem] mb-6">
         <img
           src="vela-orquidea-dourada.jpeg"
@@ -234,14 +313,14 @@
       <p class="text-primary text-2xl font-bold mb-5">R$ 49,90</p>
       <div class="flex gap-3">
         <!-- TODO: substituir href pelo link real da loja na Shopee -->
-        <a href="#" class="flex-1 text-center bg-primary text-on-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors">Shopee</a>
+        <a href="#" rel="noopener sponsored" class="flex-1 flex items-center justify-center min-h-11 text-center bg-primary text-on-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors">Shopee</a>
         <!-- TODO: substituir href pelo link real da loja no Mercado Livre -->
-        <a href="#" class="flex-1 text-center border border-primary text-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary/10 transition-colors">Mercado Livre</a>
+        <a href="#" rel="noopener sponsored" class="flex-1 flex items-center justify-center min-h-11 text-center border border-primary text-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary/10 transition-colors">Mercado Livre</a>
       </div>
     </div>
 
     <!-- Produto 2 — Jardim Rubi -->
-    <div class="group flex flex-col sm:mt-16">
+    <div class="product-card group flex flex-col w-[78%] shrink-0 snap-start sm:w-auto sm:shrink sm:mt-16 transition-transform duration-300 hover:-translate-y-1">
       <div class="relative overflow-hidden rounded-tr-[5rem] rounded-bl-[2rem] mb-6">
         <img
           src="vela-jardim-rubi.jpeg"
@@ -259,14 +338,14 @@
       <p class="text-primary text-2xl font-bold mb-5">R$ 49,90</p>
       <div class="flex gap-3">
         <!-- TODO: substituir href pelo link real da loja na Shopee -->
-        <a href="#" class="flex-1 text-center bg-primary text-on-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors">Shopee</a>
+        <a href="#" rel="noopener sponsored" class="flex-1 flex items-center justify-center min-h-11 text-center bg-primary text-on-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors">Shopee</a>
         <!-- TODO: substituir href pelo link real da loja no Mercado Livre -->
-        <a href="#" class="flex-1 text-center border border-primary text-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary/10 transition-colors">Mercado Livre</a>
+        <a href="#" rel="noopener sponsored" class="flex-1 flex items-center justify-center min-h-11 text-center border border-primary text-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary/10 transition-colors">Mercado Livre</a>
       </div>
     </div>
 
     <!-- Produto 3 — Flor da Meia-Noite -->
-    <div class="group flex flex-col">
+    <div class="product-card group flex flex-col w-[78%] shrink-0 snap-start sm:w-auto sm:shrink transition-transform duration-300 hover:-translate-y-1">
       <div class="relative overflow-hidden rounded-tl-[2rem] rounded-br-[4rem] mb-6">
         <img
           src="vela-flor-meia-noite.jpeg"
@@ -284,26 +363,30 @@
       <p class="text-primary text-2xl font-bold mb-5">R$ 49,90</p>
       <div class="flex gap-3">
         <!-- TODO: substituir href pelo link real da loja na Shopee -->
-        <a href="#" class="flex-1 text-center bg-primary text-on-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors">Shopee</a>
+        <a href="#" rel="noopener sponsored" class="flex-1 flex items-center justify-center min-h-11 text-center bg-primary text-on-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors">Shopee</a>
         <!-- TODO: substituir href pelo link real da loja no Mercado Livre -->
-        <a href="#" class="flex-1 text-center border border-primary text-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary/10 transition-colors">Mercado Livre</a>
+        <a href="#" rel="noopener sponsored" class="flex-1 flex items-center justify-center min-h-11 text-center border border-primary text-primary py-2.5 rounded-lg text-sm font-medium hover:bg-primary/10 transition-colors">Mercado Livre</a>
       </div>
     </div>
 
   </div>
+
+  <div id="carousel-dots" class="mt-4 flex justify-center gap-1 sm:hidden" aria-label="Navegação dos produtos"></div>
 </section>
 
 <!-- Divisor -->
-<div class="w-full flex justify-center py-8 text-outline-variant">
-  <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+<div class="w-full flex items-center justify-center gap-3 py-8" aria-hidden="true">
+  <span class="h-px w-12 bg-gradient-to-r from-transparent to-primary/60"></span>
+  <svg width="10" height="10" viewBox="0 0 10 10" class="text-primary">
+    <path d="M5 0 6.5 3.5 10 5 6.5 6.5 5 10 3.5 6.5 0 5 3.5 3.5Z" fill="currentColor"/>
   </svg>
+  <span class="h-px w-12 bg-gradient-to-l from-transparent to-primary/60"></span>
 </div>
 
 <!-- Nossa Essência -->
 <section id="essencia" class="py-section-gap bg-surface-container-low">
   <div class="max-w-7xl mx-auto px-organic-offset flex flex-col md:flex-row items-center gap-12 md:gap-20">
-    <div class="w-full md:w-5/12 relative">
+    <div class="w-full max-w-xs mx-auto md:max-w-none md:mx-0 md:w-5/12 relative">
       <img
         src="vela-jardim-rubi.jpeg"
         alt="Detalhe artesanal da vela Cálida Luz"
@@ -349,35 +432,35 @@
     <div class="hidden md:block absolute top-8 left-0 right-0 h-0.5 bg-outline-variant/40 mx-16"></div>
     <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 relative">
       <div class="flex md:flex-col items-start md:items-center gap-4 md:text-center">
-        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-2xl z-10">🧴</div>
+        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant z-10"><i data-lucide="flask-conical" class="w-7 h-7"></i></div>
         <div>
           <h3 class="font-display text-lg text-on-background mb-1">Cera de Soja</h3>
           <p class="text-on-surface-variant text-sm leading-relaxed">Matéria-prima natural, selecionada e biodegradável</p>
         </div>
       </div>
       <div class="flex md:flex-col items-start md:items-center gap-4 md:text-center">
-        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-2xl z-10">🌸</div>
+        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant z-10"><i data-lucide="flower-2" class="w-7 h-7"></i></div>
         <div>
           <h3 class="font-display text-lg text-on-background mb-1">Fragrância</h3>
           <p class="text-on-surface-variant text-sm leading-relaxed">Blend artesanal de óleos essenciais naturais</p>
         </div>
       </div>
       <div class="flex md:flex-col items-start md:items-center gap-4 md:text-center">
-        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-2xl z-10">🧵</div>
+        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant z-10"><i data-lucide="spool" class="w-7 h-7"></i></div>
         <div>
           <h3 class="font-display text-lg text-on-background mb-1">Pavio</h3>
           <p class="text-on-surface-variant text-sm leading-relaxed">Algodão trançado à mão para queima limpa</p>
         </div>
       </div>
       <div class="flex md:flex-col items-start md:items-center gap-4 md:text-center">
-        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-2xl z-10">⏳</div>
+        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant z-10"><i data-lucide="hourglass" class="w-7 h-7"></i></div>
         <div>
           <h3 class="font-display text-lg text-on-background mb-1">Repouso</h3>
           <p class="text-on-surface-variant text-sm leading-relaxed">48h de cura para cristalização perfeita</p>
         </div>
       </div>
       <div class="flex md:flex-col items-start md:items-center gap-4 md:text-center">
-        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-2xl z-10">📦</div>
+        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed-variant z-10"><i data-lucide="package" class="w-7 h-7"></i></div>
         <div>
           <h3 class="font-display text-lg text-on-background mb-1">Embalagem</h3>
           <p class="text-on-surface-variant text-sm leading-relaxed">Papel reciclado e carinho em cada detalhe</p>
@@ -459,18 +542,23 @@
       <input
         id="newsletter-email"
         type="email"
+        name="email"
+        autocomplete="email"
+        inputmode="email"
         required
         placeholder="seu@email.com"
         class="flex-1 bg-surface border border-outline-variant rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
       />
-      <button type="submit" class="bg-primary text-on-primary px-6 py-3 rounded-lg font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors whitespace-nowrap">
+      <button type="submit" class="bg-primary text-on-primary px-8 py-3 rounded-lg font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors duration-300 whitespace-nowrap">
         Quero receber
       </button>
     </form>
-    <div id="email-success" class="hidden">
-      <div class="flex items-center justify-center gap-3 text-secondary">
-        <i data-lucide="circle-check" class="w-5 h-5"></i>
-        <p class="font-medium">Ótimo! Você está na lista. Até breve 🕯️</p>
+    <div id="email-success" role="status" aria-live="polite">
+      <div id="email-success-msg" class="hidden">
+        <div class="flex items-center justify-center gap-3 text-secondary">
+          <i data-lucide="circle-check" class="w-5 h-5"></i>
+          <p class="font-medium">Ótimo! Você está na lista. Até breve 🕯️</p>
+        </div>
       </div>
     </div>
   </div>
@@ -483,40 +571,40 @@
       <div>
         <a href="#" class="font-display text-2xl italic text-inverse-primary block mb-3 hover:opacity-80 transition-opacity">Cálida Luz</a>
         <p class="text-inverse-on-surface/70 text-sm leading-relaxed">Velas artesanais de soja,<br/>feitas com intenção e carinho.</p>
-        <div class="flex gap-4 mt-6">
-          <a href="https://instagram.com/cali_daluz" target="_blank" rel="noopener" class="text-inverse-on-surface/60 hover:text-inverse-primary transition-colors text-sm">Instagram</a>
+        <div class="flex gap-6 mt-4">
+          <a href="https://instagram.com/cali_daluz" target="_blank" rel="noopener" class="py-1.5 text-inverse-on-surface/60 hover:text-inverse-primary transition-colors text-sm">Instagram</a>
           <!-- TODO: substituir href pelo link real do TikTok quando disponível -->
-          <a href="#" class="text-inverse-on-surface/60 hover:text-inverse-primary transition-colors text-sm">TikTok</a>
+          <a href="#" class="py-1.5 text-inverse-on-surface/60 hover:text-inverse-primary transition-colors text-sm">TikTok</a>
         </div>
       </div>
       <div>
-        <p class="text-xs uppercase tracking-widest text-inverse-on-surface/50 mb-4 font-medium">Navegação</p>
+        <p class="text-xs uppercase tracking-widest text-inverse-on-surface/60 mb-4 font-medium">Navegação</p>
         <nav class="flex flex-col gap-3">
-          <a href="#shop" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Shop</a>
-          <a href="#essencia" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Nossa Essência</a>
-          <a href="#como-e-feita" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Como é Feita</a>
-          <a href="#stories" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Depoimentos</a>
+          <a href="#shop" class="py-1.5 text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Shop</a>
+          <a href="#essencia" class="py-1.5 text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Nossa Essência</a>
+          <a href="#como-e-feita" class="py-1.5 text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Como é Feita</a>
+          <a href="#stories" class="py-1.5 text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm">Depoimentos</a>
         </nav>
       </div>
       <div>
-        <p class="text-xs uppercase tracking-widest text-inverse-on-surface/50 mb-4 font-medium">Comprar</p>
+        <p class="text-xs uppercase tracking-widest text-inverse-on-surface/60 mb-4 font-medium">Comprar</p>
         <div class="flex flex-col gap-3">
           <!-- TODO: substituir href pelo link real da loja na Shopee -->
-          <a href="#" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm flex items-center gap-2">
+          <a href="#" rel="noopener sponsored" class="py-1.5 text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm flex items-center gap-2">
             <i data-lucide="store" class="w-4 h-4"></i> Shopee
           </a>
           <!-- TODO: substituir href pelo link real da loja no Mercado Livre -->
-          <a href="#" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm flex items-center gap-2">
+          <a href="#" rel="noopener sponsored" class="py-1.5 text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm flex items-center gap-2">
             <i data-lucide="store" class="w-4 h-4"></i> Mercado Livre
           </a>
-          <a href="mailto:acalidaluz@gmail.com" class="text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm flex items-center gap-2">
+          <a href="mailto:acalidaluz@gmail.com" class="py-1.5 text-inverse-on-surface/70 hover:text-inverse-primary transition-colors text-sm flex items-center gap-2">
             <i data-lucide="mail" class="w-4 h-4"></i> Contato
           </a>
         </div>
       </div>
     </div>
     <div class="border-t border-inverse-on-surface/10 pt-8 text-center">
-      <p class="text-inverse-on-surface/50 text-xs">© 2025 Cálida Luz. Todos os direitos reservados.</p>
+      <p class="text-inverse-on-surface/60 text-xs">© 2025 Cálida Luz. Todos os direitos reservados.</p>
     </div>
   </div>
 </footer>
@@ -528,6 +616,7 @@
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', function() {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (Math.abs(scrollTop - lastScrollTop) < 8) return;
     if (scrollTop > lastScrollTop && scrollTop > 100) {
       navbar.style.transform = 'translateY(-100%)';
     } else {
@@ -543,6 +632,7 @@
   const menuCloseBtn = document.getElementById('menu-close-btn');
   function openMenu() {
     mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
     mobileMenu.removeAttribute('inert');
     menuOverlay.classList.remove('hidden');
     menuOverlay.setAttribute('aria-hidden', 'false');
@@ -552,6 +642,7 @@
   }
   function closeMenu() {
     mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
     mobileMenu.setAttribute('inert', '');
     menuOverlay.classList.add('hidden');
     menuOverlay.setAttribute('aria-hidden', 'true');
@@ -568,12 +659,75 @@
     link.addEventListener('click', closeMenu);
   });
 
+  // Entrada suave ao rolar (desligada com prefers-reduced-motion ou sem IntersectionObserver)
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const revealSelectors = [
+      '#shop > div:first-child', '#shop .grid > div', '#essencia .max-w-7xl > div', '#como-e-feita > div:first-child',
+      '#como-e-feita .grid > div', '#stories h2', '#stories .grid > div'
+    ];
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.remove('reveal-hidden');
+        entry.target.classList.add('reveal-in');
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll(revealSelectors.join(',')).forEach((el) => {
+      const index = Array.prototype.indexOf.call(el.parentElement.children, el);
+      el.style.animationDelay = Math.min(index, 5) * 90 + 'ms';
+      el.classList.add('reveal-hidden');
+      io.observe(el);
+    });
+  }
+
+  // Carrossel de produtos (mobile): indicadores sincronizados com o scroll
+  (function() {
+    const track = document.getElementById('product-carousel');
+    const dotsBox = document.getElementById('carousel-dots');
+    if (!track || !dotsBox) return;
+    const cards = Array.from(track.children);
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const dots = cards.map((card, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'flex h-6 w-6 items-center justify-center';
+      b.setAttribute('aria-label', 'Ver produto ' + (i + 1) + ' de ' + cards.length);
+      b.innerHTML = '<span class="block h-2 rounded-full bg-outline transition-all duration-300"></span>';
+      b.addEventListener('click', () => {
+        track.scrollTo({ left: card.offsetLeft - cards[0].offsetLeft, behavior: reduce ? 'auto' : 'smooth' });
+      });
+      dotsBox.appendChild(b);
+      return b;
+    });
+    function update() {
+      const x = track.scrollLeft;
+      let active = 0, best = Infinity;
+      cards.forEach((card, i) => {
+        const d = Math.abs(card.offsetLeft - cards[0].offsetLeft - x);
+        if (d < best) { best = d; active = i; }
+      });
+      dots.forEach((b, i) => {
+        const on = i === active;
+        b.firstChild.className = 'block h-2 rounded-full transition-all duration-300 ' + (on ? 'w-5 bg-primary' : 'w-2 bg-outline');
+        if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+      });
+    }
+    let ticking = false;
+    track.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { update(); ticking = false; });
+    }, { passive: true });
+    update();
+  })();
+
   // Lucide icons
   lucide.createIcons();
 
   // Email capture
   const emailForm = document.getElementById('email-form');
-  const emailSuccess = document.getElementById('email-success');
+  const emailSuccess = document.getElementById('email-success-msg');
   if (emailForm) {
     emailForm.addEventListener('submit', function(e) {
       e.preventDefault();
